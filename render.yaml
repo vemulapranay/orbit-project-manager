@@ -1,6 +1,7 @@
 services:
   - type: web
     name: orbit-api
+    branch: submission
     runtime: node
     region: singapore
     plan: free
@@ -21,6 +22,7 @@ services:
 
   - type: web
     name: orbit-web
+    branch: submission
     runtime: static
     buildCommand: corepack enable && pnpm install --filter @orbit/web... && pnpm --filter @orbit/web build
     staticPublishPath: apps/web/dist
