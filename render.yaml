@@ -5,7 +5,7 @@ services:
     runtime: node
     region: singapore
     plan: free
-    buildCommand: corepack enable && pnpm install --filter @orbit/api... && pnpm --filter @orbit/api exec prisma generate && pnpm --filter @orbit/api build
+    buildCommand: pnpm install --frozen-lockfile --filter @orbit/api... && pnpm --filter @orbit/api exec prisma generate && pnpm --filter @orbit/api build
     startCommand: pnpm --filter @orbit/api exec prisma migrate deploy && pnpm --filter @orbit/api start
     healthCheckPath: /api/health
     envVars:
@@ -18,17 +18,17 @@ services:
       - key: JWT_SECRET
         generateValue: true
       - key: WEB_ORIGIN
-        value: https://orbit-web.onrender.com
+        value: https://orbit-web-live.onrender.com
 
   - type: web
     name: orbit-web
     branch: submission
     runtime: static
-    buildCommand: corepack enable && pnpm install --filter @orbit/web... && pnpm --filter @orbit/web build
+    buildCommand: pnpm install --frozen-lockfile --filter @orbit/web... && pnpm --filter @orbit/web build
     staticPublishPath: apps/web/dist
     envVars:
       - key: VITE_API_URL
-        value: https://orbit-api.onrender.com/api
+        value: https://orbit-api-g2o5.onrender.com/api
 
 databases:
   - name: orbit-db
