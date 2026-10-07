@@ -1,0 +1,16 @@
+{
+  "name": "orbit-project-manager",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "concurrently -k \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm --workspace apps/api run dev",
+    "dev:web": "npm --workspace apps/web run dev",
+    "dev:mobile": "npm --workspace apps/mobile run start",
+    "db:generate": "npm --workspace apps/api run db:generate",
+    "db:migrate": "npm --workspace apps/api run db:migrate",
+    "build": "npm --workspace apps/web run build"
+  },
+  "devDependencies": { "concurrently": "^9.1.2", "typescript": "^5.7.2" }
+}
